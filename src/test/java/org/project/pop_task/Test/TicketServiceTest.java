@@ -26,7 +26,7 @@ public class TicketServiceTest {
     @Test
     void testSendAssignAgentRequest() {
         TicketService ticketService = mock(TicketService.class);
-        User agent = new User("1", "Agent1", "Agent");
+        User agent = new User(1, "Agent1", "Agent");
         ticketService.sendAssignAgentRequest("TICKET-1", agent);
         verify(ticketService, times(1)).sendAssignAgentRequest("TICKET-1", agent);
     }

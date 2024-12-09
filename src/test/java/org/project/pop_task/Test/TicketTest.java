@@ -24,7 +24,7 @@ public class TicketTest {
     @Test
     void testAssignAgent() {
         Ticket ticket = new Ticket("Bug", "Critical issue");
-        User agent = new User("1", "Alice", "Agent");
+        User agent = new User(1, "Alice", "Agent");
         ticket.assignAgent(agent);
         assertEquals("Agent", agent.getRole());
     }

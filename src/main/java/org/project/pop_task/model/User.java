@@ -1,11 +1,11 @@
 package org.project.pop_task.model;
 
 public class User {
-    private String userId;
+    private int userId;
     private String userName;
     private String role;
 
-    public User(String userId, String userName, String role) {
+    public User(int userId, String userName, String role) {
         this.userId = userId;
         this.userName = userName;
         this.role = role;
@@ -15,7 +15,7 @@ public class User {
         return userName;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
