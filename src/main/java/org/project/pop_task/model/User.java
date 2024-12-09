@@ -1,4 +1,4 @@
-package org.project.pop_task.domain;
+package org.project.pop_task.model;
 
 public class User {
     private String userId;

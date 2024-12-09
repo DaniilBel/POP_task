@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Ticket Management</h1>
+
+<div>
+    <h2>Create a New Ticket</h2>
+    <form action="/tickets/create" method="post">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <button type="submit">Create Ticket</button>
+    </form>
+</div>
+
+<div>
+    <h2>Tickets List</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <!-- Отображение списка тикетов -->
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.category}"></td>
+            <td th:text="${ticket.description}"></td>
+            <td th:text="${ticket.status}"></td>
+            <td>
+                <form action="/tickets/close" method="post">
+                    <input type="hidden" name="ticketId" th:value="${ticket.id}">
+                    <button type="submit">Close Ticket</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
