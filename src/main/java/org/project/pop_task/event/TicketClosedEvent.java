@@ -1,8 +1,8 @@
 package org.project.pop_task.event;
 
-public class AgentAssignedEvent {
+public class TicketClosedEvent {
     private String ticketId;
-    private String agentId;
+    private String tenantId;
 
     public String getTicketId() {
         return ticketId;
@@ -12,11 +12,11 @@ public class AgentAssignedEvent {
         this.ticketId = ticketId;
     }
 
-    public String getAgentId() {
-        return agentId;
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public void setAgentId(String agentId) {
-        this.agentId = agentId;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 }

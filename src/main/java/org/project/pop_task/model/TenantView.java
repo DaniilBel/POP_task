@@ -5,59 +5,41 @@ import jakarta.persistence.Id;
 
 @Entity
 public class TenantView {
-    public int getTicketId() {
-        return ticketId;
-    }
+    @Id
+    private String tenantId;
+    private String tenantName;
+    private double discountRate;
+    private int openTicketCount;
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getAssignedAgent() {
-        return assignedAgent;
-    }
-
-    public void setAssignedAgent(String assignedAgent) {
-        this.assignedAgent = assignedAgent;
-    }
-
-    public int getTenantId() {
+    public String getTenantId() {
         return tenantId;
     }
 
-    public void setTenantId(int tenantId) {
+    public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
     }
 
-    @Id
-    private int ticketId;
-    private String category;
-    private String description;
-    private String status; // Open, Closed
-    private String assignedAgent;
-    private int tenantId;
+    public String getTenantName() {
+        return tenantName;
+    }
+
+    public void setTenantName(String tenantName) {
+        this.tenantName = tenantName;
+    }
+
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public int getOpenTicketCount() {
+        return openTicketCount;
+    }
+
+    public void setOpenTicketCount(int openTicketCount) {
+        this.openTicketCount = openTicketCount;
+    }
 }

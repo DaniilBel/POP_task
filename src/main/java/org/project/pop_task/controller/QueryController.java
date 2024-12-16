@@ -1,34 +1,52 @@
 package org.project.pop_task.controller;
 
+import org.project.pop_task.model.TenantView;
 import org.project.pop_task.model.TicketView;
+import org.project.pop_task.repository.TenantViewRepository;
 import org.project.pop_task.repository.TicketViewRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/query")
 public class QueryController {
-    private final TicketViewRepository ticketViewRepository;
+    @Autowired
+    private TicketViewRepository ticketViewRepository;
 
-    public QueryController(TicketViewRepository repository) {
-        this.ticketViewRepository = repository;
+    @Autowired
+    private TenantViewRepository tenantViewRepository;
+
+    @GetMapping("/tickets/agent/{agentId}")
+    public List<TicketView> getActiveTicketsForAgent(@PathVariable String agentId) {
+        return ticketViewRepository.findByAssignedAgent(agentId);
     }
 
-    @GetMapping("/tickets/active")
-    public List<TicketView> getAllActiveTickets() {
-        return ticketViewRepository.findByStatus("Open");
+    @GetMapping("/tickets/tenant/{tenantId}")
+    public List<TicketView> getActiveTicketsForTenant(@PathVariable String tenantId) {
+        return ticketViewRepository.findByStatusAndTenantId("OPEN", tenantId);
     }
 
-    @GetMapping("/tickets/agent/{agentName}")
-    public List<TicketView> getTicketsByAgent(@PathVariable String agentName) {
-        return ticketViewRepository.findByAssignedAgent(agentName);
+    @GetMapping("/tickets/closed/last7days/{tenantId}")
+    public List<TicketView> getClosedTicketsLast7Days(@PathVariable String tenantId) {
+        LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
+        return ticketViewRepository.findClosedTicketsLast7Days(tenantId, sevenDaysAgo);
     }
 
-    @GetMapping("/tickets/{ticketId}")
-    public TicketView getTicketById(@PathVariable int ticketId) {
-        return ticketViewRepository.findById(ticketId)
-                .orElseThrow(() -> new RuntimeException("Ticket not found"));
+    @GetMapping("/tenant/{tenantId}")
+    public TenantView getTenantInfo(@PathVariable String tenantId) {
+        return tenantViewRepository.findByTenantId(tenantId).orElseThrow(() -> new RuntimeException("Tenant not found"));
+    }
+
+    @PostMapping("/tickets")
+    public TicketView createTicket(@RequestBody TicketView ticketView) {
+        return ticketViewRepository.save(ticketView);
+    }
+
+    @PostMapping("/tenants")
+    public TenantView createTenant(@RequestBody TenantView tenantView) {
+        return tenantViewRepository.save(tenantView);
     }
 }
