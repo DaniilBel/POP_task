@@ -9,7 +9,6 @@ public class AgentAssignedEvent {
         this.agentId = agentId;
     }
 
-    // Getters
     public String getTicketId() { return ticketId; }
     public String getAgentId() { return agentId; }
 }

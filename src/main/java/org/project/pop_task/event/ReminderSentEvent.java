@@ -7,6 +7,5 @@ public class ReminderSentEvent {
         this.ticketId = ticketId;
     }
 
-    // Getter
     public String getTicketId() { return ticketId; }
 }

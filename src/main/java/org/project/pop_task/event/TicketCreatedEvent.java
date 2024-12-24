@@ -11,7 +11,6 @@ public class TicketCreatedEvent {
         this.description = description;
     }
 
-    // Getters
     public String getTicketId() { return ticketId; }
     public String getCategory() { return category; }
     public String getDescription() { return description; }

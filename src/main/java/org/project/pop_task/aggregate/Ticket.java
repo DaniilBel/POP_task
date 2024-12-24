@@ -8,7 +8,6 @@ public class Ticket {
     private String assignedAgent;
     private String tenantId;
 
-    // Getters and Setters
     public String getTicketId() { return ticketId; }
     public void setTicketId(String ticketId) { this.ticketId = ticketId; }
 

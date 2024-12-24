@@ -11,7 +11,6 @@ public class CreateTicketCommand {
         this.tenantId = tenantId;
     }
 
-    // Getters
     public String getCategory() { return category; }
     public String getDescription() { return description; }
     public String getTenantId() { return tenantId; }

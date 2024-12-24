@@ -5,7 +5,6 @@ public class Tenant {
     private String tenantName;
     private double discountRate;
 
-    // Getters and Setters
     public String getTenantId() { return tenantId; }
     public void setTenantId(String tenantId) { this.tenantId = tenantId; }
 

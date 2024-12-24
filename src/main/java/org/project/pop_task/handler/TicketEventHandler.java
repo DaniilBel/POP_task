@@ -1,6 +1,5 @@
 package org.project.pop_task.handler;
 
-import org.project.pop_task.event.AgentAssignedEvent;
 import org.project.pop_task.event.TicketClosedEvent;
 import org.project.pop_task.event.TicketCreatedEvent;
 import org.project.pop_task.query.TicketProjection;

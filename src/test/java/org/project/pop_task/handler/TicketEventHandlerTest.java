@@ -29,13 +29,10 @@ public class TicketEventHandlerTest {
 
     @Test
     public void testOnTicketClosed() {
-        // Arrange
         TicketClosedEvent event = new TicketClosedEvent("ticket123");
 
-        // Act
         handler.onTicketClosed(event);
 
-        // Assert
         verify(ticketProjection, times(1)).onTicketClosed(event);
     }
 }

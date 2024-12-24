@@ -1,8 +1,6 @@
 package org.project.pop_task.orchestrator;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.project.pop_task.command.CloseTicketCommand;
 import org.project.pop_task.command.CreateTicketCommand;
 import org.project.pop_task.command.SendReminderCommand;
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.hamcrest.Matchers.any;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.times;
@@ -35,14 +32,18 @@ public class TicketOrchestratorTest {
 
     @Test
     public void testCreateTicket() {
-        CreateTicketCommand command = new CreateTicketCommand("Support", "Issue description", "ticket123");
+        String category = "Support";
+        String description = "Issue description";
+        String ticketId = "ticket123";
+
+        CreateTicketCommand command = new CreateTicketCommand(category, description, ticketId);
         ticketOrchestrator.createTicket(command);
 
         verify(eventPublisher).publish(argThat(event ->
                 event instanceof TicketCreatedEvent &&
-                        "Support".equals(((TicketCreatedEvent) event).getCategory()) &&
-                        "Issue description".equals(((TicketCreatedEvent) event).getDescription()) &&
-                        "ticket123".equals(((TicketCreatedEvent) event).getTicketId())
+                        category.equals(((TicketCreatedEvent) event).getCategory()) &&
+                        description.equals(((TicketCreatedEvent) event).getDescription()) &&
+                        ticketId.equals(((TicketCreatedEvent) event).getTicketId())
         ));
     }
 
@@ -59,14 +60,11 @@ public class TicketOrchestratorTest {
 
     @Test
     public void testSendReminder() {
-        // Arrange
         SendReminderCommand command = new SendReminderCommand("ticket123");
         ReminderSentEvent expectedEvent = new ReminderSentEvent("ticket123");
 
-        // Act
         ticketOrchestrator.sendReminder(command);
 
-        // Assert
         verify(eventPublisher, times(1)).publish(argThat(event ->
                 event instanceof ReminderSentEvent &&
                         ((ReminderSentEvent) event).getTicketId().equals(expectedEvent.getTicketId())
