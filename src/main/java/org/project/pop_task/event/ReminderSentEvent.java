@@ -1,9 +1,9 @@
 package org.project.pop_task.event;
 
-public class TicketClosedEvent {
+public class ReminderSentEvent {
     private String ticketId;
 
-    public TicketClosedEvent(String ticketId) {
+    public ReminderSentEvent(String ticketId) {
         this.ticketId = ticketId;
     }
 

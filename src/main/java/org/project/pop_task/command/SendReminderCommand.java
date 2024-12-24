@@ -1,9 +1,9 @@
-package org.project.pop_task.event;
+package org.project.pop_task.command;
 
-public class TicketClosedEvent {
+public class SendReminderCommand {
     private String ticketId;
 
-    public TicketClosedEvent(String ticketId) {
+    public SendReminderCommand(String ticketId) {
         this.ticketId = ticketId;
     }
 

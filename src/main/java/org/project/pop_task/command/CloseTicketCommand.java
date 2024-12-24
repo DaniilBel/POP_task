@@ -1,9 +1,9 @@
-package org.project.pop_task.event;
+package org.project.pop_task.command;
 
-public class TicketClosedEvent {
+public class CloseTicketCommand {
     private String ticketId;
 
-    public TicketClosedEvent(String ticketId) {
+    public CloseTicketCommand(String ticketId) {
         this.ticketId = ticketId;
     }
 

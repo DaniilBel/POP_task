@@ -1,10 +1,10 @@
-package org.project.pop_task.event;
+package org.project.pop_task.command;
 
-public class AgentAssignedEvent {
+public class AssignAgentCommand {
     private String ticketId;
     private String agentId;
 
-    public AgentAssignedEvent(String ticketId, String agentId) {
+    public AssignAgentCommand(String ticketId, String agentId) {
         this.ticketId = ticketId;
         this.agentId = agentId;
     }
